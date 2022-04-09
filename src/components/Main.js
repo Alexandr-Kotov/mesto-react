@@ -11,7 +11,7 @@ function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick}) {
   const [cards, setCards] = useState([]);
 
   const section = () => {
-    if (cards.length > 0) {
+    if (cards) {
       return cards.map((card) => (
         <Card card={card} onCardClick={onCardClick} key={`card${card._id}`} />
       ));
@@ -27,17 +27,14 @@ function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick}) {
         setUserAvatar(res.avatar);
       })
       .catch((error) => console.log(error));
-  }, []);
-
-  useEffect(() => {
-    api
+      api
       .getCardSever()
       .then((res) => {
         setCards(res);
       })
       .catch((error) => console.log(error));
   }, []);
-
+  
   return(
   <main className="main">
     <section className="profile">

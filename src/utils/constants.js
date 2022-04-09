@@ -1,12 +1,3 @@
-export const validation ={
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save',
-  inactiveButtonClass: 'popup__save_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active'
-}; 
-
 export const listCard = ('.elements');
 export const popupEdit = document.querySelector('.popup_edit');
 export const popupAdd = document.querySelector('.popup_add');

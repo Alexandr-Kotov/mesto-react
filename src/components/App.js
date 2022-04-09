@@ -41,12 +41,12 @@ function App() {
             />
             <Footer />
             <PopupWithForm
-        isOpen={isEditProfilePopupOpen}
-        onClose={closeAllPopups}
-        title="Редактировать профиль"
-        name="edit"
-        children={
-          <>
+              isOpen={isEditProfilePopupOpen}
+              onClose={closeAllPopups}
+              title="Редактировать профиль"
+              name="edit"
+              buttonText="Сохранить"
+            >
               <input
                 type="text"
                 className="popup__input"
@@ -69,16 +69,14 @@ function App() {
                 maxLength="200"
               />
               <span id="description-input-error" className="popup__input-error"></span>
-          </>
-        }
-      />
-      <PopupWithForm
-        isOpen={isAddPlacePopupOpen}
-        onClose={closeAllPopups}
-        title="Новое место"
-        name="add"
-        children={
-          <>
+            </PopupWithForm>
+            <PopupWithForm
+              isOpen={isAddPlacePopupOpen}
+              onClose={closeAllPopups}
+              title="Новое место"
+              name="add"
+              buttonText="Создать"
+            >
               <input
                 type="text"
                 className="popup__input"
@@ -99,16 +97,14 @@ function App() {
                 required
               />
               <span id="card-linkAvatar-input-error" className="popup__input-error"></span>
-          </>
-        }
-      />
-      <PopupWithForm
-        isOpen={isEditAvatarPopupOpen}
-        onClose={closeAllPopups}
-        title="Обновить автар"
-        name="avatar"
-        children={
-          <>
+            </PopupWithForm>
+            <PopupWithForm
+              isOpen={isEditAvatarPopupOpen}
+              onClose={closeAllPopups}
+              title="Обновить автар"
+              name="avatar"
+              buttonText="Сохранить"
+            >
               <input
                 type="url"
                 className="popup__input"
@@ -118,10 +114,8 @@ function App() {
                 required
               />
               <span id="card-link-input-error" className="popup__input-error"></span>
-          </>
-        }
-      />
-      <ImagePopup onClose={closeAllPopups} card={selectedCard} />
+            </PopupWithForm>
+            <ImagePopup onClose={closeAllPopups} card={selectedCard} />
     </>
   );
 }
