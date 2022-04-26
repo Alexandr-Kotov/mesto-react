@@ -1,51 +1,35 @@
-import { useEffect, useState } from "react";
-import { api } from "../utils/Api";
-import avatar from '../images/profile__avatar.jpg'
+import { useContext} from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { Card } from "./Card";
 
-function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick}) {
-
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [userAvatar, setUserAvatar] = useState(avatar);
-  const [cards, setCards] = useState([]);
+export function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCardLike, onCardDelete,}) {
+  const currentUserContext = useContext(CurrentUserContext);
 
   const section = () => {
-    if (cards) {
+    if (cards.length > 0) {
       return cards.map((card) => (
-        <Card card={card} onCardClick={onCardClick} key={`card${card._id}`} />
+        <Card
+          card={card}
+          onCardClick={onCardClick}
+          onLikeClick={onCardLike}
+          onDeleteClick={onCardDelete}
+          key={`card${card._id}`}
+        />
       ));
     }
   };
-
-  useEffect(() => {
-    api
-      .getProfile()
-      .then((res) => {
-        setUserName(res.name);
-        setUserDescription(res.about);
-        setUserAvatar(res.avatar);
-      })
-      .catch((error) => console.log(error));
-      api
-      .getCardSever()
-      .then((res) => {
-        setCards(res);
-      })
-      .catch((error) => console.log(error));
-  }, []);
   
   return(
   <main className="main">
     <section className="profile">
         <div className="profile__container">
-            <img className="profile__avatar" src={userAvatar} />
+            <img className="profile__avatar" src={currentUserContext?.avatar} />
             <div className="profile__avatar-owner" onClick={onEditAvatar}></div>
         </div>
         <div className="profile__info">
-            <h1 className="profile__title">{userName}</h1>
+            <h1 className="profile__title">{currentUserContext?.name}</h1>
             <button className="profile__button-edit" type="button" onClick={onEditProfile}></button>
-            <p className="profile__subtitle">{userDescription}</p>
+            <p className="profile__subtitle">{currentUserContext?.about}</p>
         </div>
         <button className="profile__button-add" type="button" onClick={onAddPlace}></button>
     </section>
