@@ -12,7 +12,7 @@ export function ImagePopup({ onClose, card }) {
 
   return (
     <div
-    className={card ? `popup popup_image popup_opened` : `popup popup_image`}
+    className={card ? `popup popup_big popup_opened` : `popup popup_big`}
     id="image_popup"
     onClick={onClose}
   >

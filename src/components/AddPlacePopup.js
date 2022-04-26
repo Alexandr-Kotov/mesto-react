@@ -57,6 +57,6 @@ export const AddPlacePopup = ({ isOpen, onClose, onAddCard }) => {
         value={link}
       />
       <span id="card-linkAvatar-input-error" className="popup__input-error"></span>
-      </PopupWithForm>
+    </PopupWithForm>
   );
 };

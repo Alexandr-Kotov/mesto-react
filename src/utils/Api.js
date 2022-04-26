@@ -2,8 +2,12 @@ class Api {
   constructor({baseUrl, headers}) {
     this._baseUrl = baseUrl;
     this._headers = headers;
-    this._resHandler = (res) => (res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`));
   }
+
+  _resHandler(res){
+    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
+  }
+
 
   getProfile(){
     return fetch(`${this._baseUrl}/users/me`,{
@@ -17,7 +21,7 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(me),
-    }).then((res) => this._resHandler(res));
+    }).then((res) => this._resHandler);
   }
 
   getCardSever(){

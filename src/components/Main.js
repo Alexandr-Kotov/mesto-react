@@ -20,23 +20,23 @@ export function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick, card
   };
   
   return(
-  <main className="main">
-    <section className="profile">
+    <main className="main">
+      <section className="profile">
         <div className="profile__container">
-            <img className="profile__avatar" src={currentUserContext?.avatar} />
-            <div className="profile__avatar-owner" onClick={onEditAvatar}></div>
+          <img className="profile__avatar" src={currentUserContext?.avatar} />
+          <div className="profile__avatar-owner" onClick={onEditAvatar}></div>
         </div>
         <div className="profile__info">
-            <h1 className="profile__title">{currentUserContext?.name}</h1>
-            <button className="profile__button-edit" type="button" onClick={onEditProfile}></button>
-            <p className="profile__subtitle">{currentUserContext?.about}</p>
+          <h1 className="profile__title">{currentUserContext?.name}</h1>
+          <button className="profile__button-edit" type="button" onClick={onEditProfile}></button>
+          <p className="profile__subtitle">{currentUserContext?.about}</p>
         </div>
         <button className="profile__button-add" type="button" onClick={onAddPlace}></button>
-    </section>
-    <section className="elements">
-      {section()}
-    </section>
-  </main>
+      </section>
+      <section className="elements">
+        {section()}
+      </section>
+    </main>
   )
 };
 
