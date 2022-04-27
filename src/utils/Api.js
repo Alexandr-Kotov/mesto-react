@@ -4,7 +4,7 @@ class Api {
     this._headers = headers;
   }
 
-  _resHandler(res){
+  _handleResponse(res){
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
   }
 
@@ -13,7 +13,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`,{
       headers: this._headers
     })  
-    .then((res) => this._resHandler(res))
+    .then(this._handleResponse)
   }
 
   patchProfile(me) {
@@ -21,14 +21,15 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify(me),
-    }).then((res) => this._resHandler);
+    })
+    .then(this._handleResponse)
   }
 
   getCardSever(){
     return fetch(`${this._baseUrl}/cards`,{
       headers: this._headers
     })
-    .then((res) => this._resHandler(res))
+    .then(this._handleResponse)
   }
 
   postCardSever(card) {
@@ -36,7 +37,8 @@ class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(card),
-    }).then((res) => this._resHandler(res));
+    })
+    .then(this._handleResponse)
   }
 
   deleteCard(id){
@@ -44,7 +46,7 @@ class Api {
       method: 'DELETE',
       headers: this._headers,
     })
-    .then((res) => this._resHandler(res))
+    .then(this._handleResponse)
   }
 
 
@@ -52,7 +54,8 @@ class Api {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: `${hasMyLike ? "DELETE" : "PUT"}`,
       headers: this._headers,
-    }).then((res) => this._resHandler(res));
+    })
+    .then(this._handleResponse)
   }
 
 
@@ -61,7 +64,7 @@ class Api {
       method: 'PUT',
       headers: this._headers,
     })
-    .then((res) => this._resHandler(res))
+    .then(this._handleResponse)
   }
 
 
@@ -73,7 +76,7 @@ class Api {
         avatar: avatarLink
       })
     })
-    .then((res) => this._resHandler(res))
+    .then(this._handleResponse)
   }
 }
 
